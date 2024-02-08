@@ -34,4 +34,6 @@
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+
+*.idea
 Thumbs.db
