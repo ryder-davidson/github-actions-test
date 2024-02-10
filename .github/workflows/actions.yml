@@ -13,7 +13,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
       - run: |
-          python
-          import requests
-          print(requests.__version__)
-        
+          python src/main.py
