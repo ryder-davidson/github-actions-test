@@ -1,7 +1,7 @@
-import os
 import requests
-from datetime import datetime
 import pandas as pd
+import os
+from datetime import datetime
 import io
 
 API = "https://healthdata.gov/resource/g62h-syeh.csv"

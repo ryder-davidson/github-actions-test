@@ -1,3 +1,3 @@
-import requests
+import data_fetch
 
-print(requests.__version__)
+print(data_fetch.data_api_fetch_lm())
