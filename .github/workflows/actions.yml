@@ -14,6 +14,8 @@ jobs:
         run: |
           git config --global user.name 'Ryder Davidson'
           git config --global user.email 'rdavidson@Ryders-MBP-2.predsci.com'
-          git commit -am "Automated data fetch"
+          git status
+          git add .
+          git commit -m "Automated data fetch"
           git push
 
