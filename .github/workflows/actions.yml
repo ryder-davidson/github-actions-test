@@ -1,17 +1,11 @@
 name: run-data-fetch-test
-run-name: fetch-lm-data
+run-name: fetch-hhs-data
 on: [push]
 jobs:
-  fetch-lm-data:
+  fetch-hhs-data:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-      - run: |
-          python -m pip install --upgrade pip
-          pip install requests
-          pip install pandas
-      - run: |
-          python src/main.py
+      - name: Run Script
+        run: ./src/data_api_fetch_all.sh data
+

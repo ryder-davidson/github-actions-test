@@ -3,6 +3,7 @@ import pandas as pd
 import os
 from datetime import datetime
 import io
+import time
 
 API = "https://healthdata.gov/resource/g62h-syeh.csv"
 CHUNK_LIMIT = 1000000
@@ -75,6 +76,7 @@ def data_api_fetch_all(order_by="date",
             f"{", ".join(DISEASE_COLS["influenza"])}, "
             f"{", ".join(DISEASE_COLS["covid"])}")
 
+    # params["$where"] = "date>'2020-09-01'"
     params["$select"] = cols
     params["$order"] = order_by
     params["$limit"] = limit
@@ -111,3 +113,9 @@ def check_data_against_lm(path):
     current_lm_date = datetime.strptime(last_modified, '%a, %d %b %Y %H:%M:%S %Z')
 
     return file_lm_date == current_lm_date
+
+output = data_api_fetch_lm()
+t1 = time.time()
+v1 = data_api_fetch_all()
+print(time.time() - t1)
+print()
