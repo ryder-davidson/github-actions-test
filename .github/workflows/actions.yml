@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Make the script files executable
+        run: chmod +x ./src/data_api_fetch_all.sh
       - name: Run Script
         run: ./src/data_api_fetch_all.sh data
 
