@@ -1,9 +1,7 @@
 name: automated-hhs-data-sync
-run-name: fetch-${{ env.NOW }}
 on:
   schedule:
     - cron: "* * * * *"
-#    - cron: "0 10 * * 3,5"
 permissions:
   contents: write
 jobs:
