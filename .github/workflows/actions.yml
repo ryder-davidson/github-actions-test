@@ -6,15 +6,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        name: Check out current commit
+
       - name: Manage script permissions
         run: chmod +x ./src/data_api_fetch_all.sh
+
       - name: Run data fetch script
         run: ./src/data_api_fetch_all.sh data
-      - name: Commit file to repo
+
+      - name: Diff
+        id: verify_diff
+        run: |
+          git diff --quiet . || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit
+        if: steps.verify_diff.outputs.changed == 'true'
         run: |
           git config --global user.name 'Ryder Davidson'
           git config --global user.email 'ryder-davidson@users.noreply.github.com'
           git status
-          git commit -am "Automated data fetch"
+          git commit m "Automated data fetch" -a
           git push
 
+      - name: Push
+        if: steps.verify_diff.outputs.changed == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
