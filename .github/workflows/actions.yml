@@ -6,8 +6,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Make the script files executable
+      - name: Manage script permissions
         run: chmod +x ./src/data_api_fetch_all.sh
-      - name: Run Script
+      - name: Run data fetch script
         run: ./src/data_api_fetch_all.sh data
+      - name: Commit file to repo
+        run: |
+          git config --global user.name 'Ryder Davidson'
+          git config --global user.email 'ryder-davidson@users.noreply.github.com'
+          git commit -am "Automated data fetch"
+          git push
 
