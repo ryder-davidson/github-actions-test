@@ -34,7 +34,7 @@ time {
     res_code=$(grep "^HTTP" "$headers" | awk '{print $2}')
 
     if [ "$res_code" -eq 200 ]; then
-        timestamp=$(grep "^Last-Modified" "$headers" | awk -F ": " '{print $2}' | awk '{month_abv = $3; months = "JanFebMarAprMayJunJulAugSepOctNovDec"; month_num = (index(months, month_abv) + 2) / 3; printf "%s%02d%s%s", $2, month_num, substr($4, 3, 2), $5}' | tr -d ':')
+        timestamp=$(grep "^Last-Modified" "$headers" | awk -F ": " '{print $2}' | awk '{month_abv = $3; months = "JanFebMarAprMayJunJulAugSepOctNovDec"; month_num = (index(months, month_abv) + 2) / 3; printf "%s%02d%s%s", substr($4, 3, 2), month_num, $2, $5}' | tr -d ':')
 
         filename="$DATA_DIR/HHS_daily-hosp_state__$timestamp.csv"
         echo "$response" | awk '{gsub("T00:00:00.000", "", $1); print}' > "$filename"
