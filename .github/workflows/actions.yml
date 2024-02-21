@@ -28,8 +28,8 @@ jobs:
         run: |
           git config --global user.name 'Ryder Davidson'
           git config --global user.email 'ryder-davidson@users.noreply.github.com'
-          git status
-          git commit -m "Automated data fetch" -a
+          git status | grep -Eo "data/HHS_daily-hosp_state__[[:digit:]]+\.csv" | xargs git add
+          git commit -m "Automated data fetch"
           git push
 
       - name: Push
