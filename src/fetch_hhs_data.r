@@ -16,6 +16,21 @@ TO_TIMESTAMP_FMT <- "%y%m%d%H%M%S"
 
 API <- "https://healthdata.gov/resource/g62h-syeh.csv"
 
+#' Download daily state-level HHS PROTECT hospitalization admission data
+#' to a CSV.
+#'
+#' @param down_dir character string. The directory path to download to.
+#' @param down_filename character string. The filename to download to.
+#' @param fields character string. The filename to download to.
+#' @param order character string. The filename to download to.
+#' @param limit character string. The filename to download to.
+#'
+#' @return an integer. 0 for success and non-zero for failure.
+#' @export
+#'
+#' @examples
+#' hhs_hosp_state_down(down_dir = "~/Downloads", down_filename = NULL)
+#'
 fetch_hhs_data <- function(down_dir="~",
                            down_filename=NULL,
                            fields=COLS,

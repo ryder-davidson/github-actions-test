@@ -12,7 +12,7 @@ if [ -d "data" ]; then
     DATA_DIR="data"
 else
     echo "'data' directory does not exist"
-    exit $STATUS_ERROR
+    exit "$status"
 fi
 
 API="https://healthdata.gov/resource/g62h-syeh.csv";
