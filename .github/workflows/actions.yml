@@ -21,7 +21,7 @@ jobs:
       - name: Diff
         id: verify_diff
         run: |
-          if git status --porcelain data/ | grep -Eo "HHS_daily-hosp_state(_TEST)?__[[:digit:]]+\.csv"; then
+          if git status --porcelain data/ | grep -Eo "data/HHS_daily-hosp_state(_TEST)?__[[:digit:]]+\.csv"; then
             echo "changed=true" >> $GITHUB_ENV
           else
             echo "changed=false" >> $GITHUB_ENV
