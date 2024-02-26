@@ -1,8 +1,8 @@
 name: automated-hhs-data-sync
 on:
-#  [push]
-  schedule:
-    - cron: "0 18 * * 3,5"
+  [push]
+#  schedule:
+#    - cron: "0 18 * * 3,5"
 permissions:
   contents: write
 jobs:
@@ -13,10 +13,10 @@ jobs:
         name: Checkout
 
       - name: Manage script permissions
-        run: chmod +x ./src/fetch_hhs_data.sh
+        run: chmod +x .github/scripts/fetch_hhs_data.sh
 
       - name: Run data fetch script
-        run: ./src/fetch_hhs_data.sh
+        run: .github/scripts/fetch_hhs_data.sh
 
       - name: Diff
         id: verify_diff
