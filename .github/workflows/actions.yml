@@ -22,16 +22,16 @@ jobs:
         id: verify_diff
         run: |
           if git status --porcelain data/ | grep -Eo "data/HHS_daily-hosp_state(_TEST)?__[[:digit:]]+\.csv"; then
-            echo "changed=true" >> $GITHUB_ENV
+            echo "changed=true" >> $GITHUB_OUTPUT
           else
-            echo "changed=false" >> $GITHUB_ENV
+            echo "changed=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Check Env
         id: check_env
         run: |
           echo $GITHUB_ENV
-          echo {{$steps.verify_diff.outputs.changed}}
+          echo "${{steps.verify_diff.outputs.changed}}"
 
       - name: Commit
         if: steps.verify_diff.outputs.changed == 'true'
