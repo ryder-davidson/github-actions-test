@@ -27,12 +27,6 @@ jobs:
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Check Env
-        id: check_env
-        run: |
-          echo $GITHUB_ENV
-          echo "${{steps.verify_diff.outputs.changed}}"
-
       - name: Commit
         if: steps.verify_diff.outputs.changed == 'true'
         run: |
